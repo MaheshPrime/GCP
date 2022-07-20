@@ -1,0 +1,14 @@
+ddl_config = {
+    "airflow_bkt":"airflow-configured-bucket",
+    "project":"project-name",
+    "dataset":"dataset-name",
+    "collibra_project":"different-project-name",
+    "collibra_dataset":"different-dataset-name",
+    "local_mkt":"<country_code>",
+    "env_var":"<environment_name i.e dev,prd>",
+    "location":"<table resides country code>",
+    "layer":[
+       "Folder1",
+       "Collibra"
+    ]
+ }
