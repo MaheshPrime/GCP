@@ -118,22 +118,7 @@ def list_blobs( **kwargs):
         preexecution(script_name,layer)
     return "execution_done"
 
-# ddl_config = {
-#    "airflow_bkt":"europe-west1-vf-hu-ngbi-dev-2dbcee98-bucket",
-#    "project":"vf-hu-datahub",
-#    "dataset":"vfhu_dh_lake_edw_integrated_hu_dev_02_v",
-#    "collibra_project":"vf-hu-ngbi-dev-gen-02",
-#    "collibra_dataset":"vfhu_dh_lake_edw_integrated_hu_dev_02_v",
-#    "local_mkt":"hu",
-#    "env_var":"dev",
-#    "location":"EU",
-#    "layer":[
-#       "R1_R3",
-#       "Collibra"
-#    ]
-# }
 
-# ddl_script = json.dumps(ddl_script)
 
 
 #This method is reponsible for Creating Tables
