@@ -5,8 +5,8 @@ from datetime import datetime
 
 now = datetime.now()
 class Constants:
-    project_id = "data-exchange-01"
-    dataset_id = "panthersdataset"
+    project_id = "project_id"
+    dataset_id = "dataset_id"
     Staging_table = "STAGING_TABLE"
     Final_table = "FINAL_TABLE"
     table_id_prefix = f"{project_id}.{dataset_id}."
@@ -126,7 +126,9 @@ WHEN NOT MATCHED THEN
     destination_table = client.get_table(table_id)
     print("Loaded {} rows in the {} ".format(destination_table.num_rows,table_id))
 
-def hello_gcs(event, context, jsonfile = 'schema.json'):
+
+# Entry Point of Cloud Function 
+def create_finaltable_from_storage_using_schema(event, context, jsonfile = 'schema.json'): 
     file = event
     print(f"Processing file: {file['name']}.")
     Folder = Constants.folder
@@ -158,7 +160,7 @@ def hello_gcs(event, context, jsonfile = 'schema.json'):
                     filelist.append(blob.name)
 
         print(filelist)
-        # del filelist[0]
+       
         Bucket = file['bucket']
         for file in filelist:
             file = file.split("/")[-1]
@@ -187,9 +189,3 @@ def hello_gcs(event, context, jsonfile = 'schema.json'):
 
     else:
         print("Path Mismatch")
-        # bucket_name = "teampanthers_bucket"
-        # table_id = staging_table_creation(jsonfile)
-        # staging_table_id = dataload_on_stagingtable(table_id,jsonfile,bucket_name)
-        # final_table_id = Final_table_creation(jsonfile)
-        # dataload_on_finaltable(final_table_id,jsonfile)
-        # print("Path Mismatch")
