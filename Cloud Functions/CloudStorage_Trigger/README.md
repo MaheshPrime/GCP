@@ -3,7 +3,7 @@
 Overview-
 Every day file gets uploaded in specific folder, function needs to pick the uploaded file then add FileName column and place it in a processed Folder, then create a staging table using historical data (pre-existing data) and new data (uploaded data), then creata a final table by performing Query over staging table.
 
-Given Requirement was split it 3 steps:
+Given Requirement was split into 3 steps:
 
 Step 1: [ Transformation and File Migration ]
 
@@ -21,5 +21,5 @@ Step 2: [ Staging Table Creation ]
 Step 3: [ Final Table Creation ]
 
 1) Create a Final Table by querying the Staging Table with given condtion.
-2) Final Table need to be updated with new data addtionall two columns need to get added which is mentioned in the query execution.
+2) Final Table need to be updated with new data addtional two columns need to get added which is mentioned in the query execution.
 
