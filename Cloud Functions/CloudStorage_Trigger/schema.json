@@ -1,0 +1,22 @@
+[
+  {
+    "name": "COL1",
+    "type": "STRING",
+    "fields": []
+  },
+  {
+    "name": "COL2",
+    "type": "STRING",
+    "fields": []
+  },
+  {
+    "name": "COL3",
+    "type": "STRING",
+    "fields": []
+  },
+  {
+    "name": "FileName",
+    "type": "STRING",
+    "fields": []
+  }
+]

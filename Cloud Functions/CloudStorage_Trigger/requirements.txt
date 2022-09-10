@@ -1,0 +1,5 @@
+pandas== 1.4.4
+google-cloud-bigquery==2.34.3
+google-cloud-storage==2.5.0
+fsspec == 2022.8.2
+gcsfs == 2022.8.2
