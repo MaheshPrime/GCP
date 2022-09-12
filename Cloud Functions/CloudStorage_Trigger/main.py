@@ -43,31 +43,40 @@ def staging_table_creation(jsonfile):
     query_job.result()
     return table_id
 
-def dataload_on_stagingtable(table_id,jsonfile,bucket_name):
+#load new data in staging table
+def dataload_on_stagingtable(table_id,jsonfile,bucket_name,filelist):
     data = pd.read_json(jsonfile)
     client = storage.Client()
     bucket = client.get_bucket(bucket_name)
     blobs = bucket.list_blobs(prefix = Constants.folder + "/Processed")
     schema=[bigquery.SchemaField(data['name'][index], data['type'][index]) for index in data.index ]
     client = bigquery.Client()
-    for blob in blobs:
-        print(blob.name)
-        newpath = "gs://" + bucket_name + "/" + blob.name
-        job_config = bigquery.LoadJobConfig(
-        schema=schema,
-        skip_leading_rows=1,
-        source_format=bigquery.SourceFormat.CSV,
-        write_disposition=bigquery.WriteDisposition.WRITE_APPEND,  )
-        uri = newpath 
+    
+    new_files = []
+    for filename in filelist:
+        new_files.append(filename.split("/")[-1])
 
-        load_job = client.load_table_from_uri(
-            uri, table_id, job_config=job_config
-        ) 
-        load_job.result()  
+    for blob in blobs:
+        if (blob.name).split("/")[-1] in new_files:
+            print(blob.name)
+            newpath = "gs://" + bucket_name + "/" + blob.name
+            job_config = bigquery.LoadJobConfig(
+            schema=schema,
+            skip_leading_rows=1,
+            source_format=bigquery.SourceFormat.CSV,
+            write_disposition=bigquery.WriteDisposition.WRITE_APPEND,  )
+            uri = newpath 
+
+            load_job = client.load_table_from_uri(
+                uri, table_id, job_config=job_config
+            ) 
+            load_job.result() 
+         
     print("Data landed in Staging Table :", table_id)
     destination_table = client.get_table(table_id)
     print("Loaded {} rows in the {} ".format(destination_table.num_rows,table_id))
     return table_id
+
 
 def Final_table_creation(jsonfile):
     schema = schema_generator(jsonfile)
@@ -179,13 +188,16 @@ def create_finaltable_from_storage_using_schema(event, context, jsonfile = 'sche
             print(newpath)
             csv_input.to_csv(newpath, line_terminator="\n", index = False) # Load Data
             delete_blob(bucket_name, blob_name)
-
+	# Staging Table Creation
         table_id = staging_table_creation(jsonfile)
-        staging_table_id = dataload_on_stagingtable(table_id,jsonfile,bucket_name)
+	# Data load on staging table
+        staging_table_id = dataload_on_stagingtable(table_id,jsonfile,bucket_name,filelist)
+	# Final Table Creation
         final_table_id = Final_table_creation(jsonfile)
+	# Data load on final table 
         dataload_on_finaltable(final_table_id,jsonfile)
 
-        return "Successfully Executed !!!"
+        print("Successfully Executed !!!")
 
     else:
         print("Path Mismatch")
