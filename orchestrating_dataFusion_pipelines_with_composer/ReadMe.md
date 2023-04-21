@@ -50,7 +50,7 @@ To deploy this project Upload all python files to dags folder of airflow, import
 ```
 
 
-#### Check out this link to learn more about managing Aiflow apis.
+#### Check out this link to learn more about managing Airflow apis.
 
 ```http
   https://airflow.apache.org/docs/apache-airflow-providers-google/stable/_api/airflow/providers/google/cloud/hooks/index.html
