@@ -1,0 +1,5 @@
+{"my.recipe":"parse-as-csv body , true\ndrop body\nset columns EMPLOYEE_ID,FIRST_NAME,LAST_NAME,EMAIL,PHONE_NUMBER,HIRE_DATE,JOB_ID,SALARY,COMMISSION_PCT,MANAGER_ID,DEPARTMENT_ID\nset-type :EMPLOYEE_ID integer\nmask-number :EMAIL xxxx####\nlowercase :JOB_ID",
+"my.schema":"{\"type\":\"record\",\"name\":\"etlSchemaBody\",\"fields\":[{\"name\":\"EMP_ID\",\"type\":[\"string\",\"null\"]},{\"name\":\"FIRST_NAME\",\"type\":[\"string\",\"null\"]},{\"name\":\"LAST_NAME\",\"type\":[\"string\",\"null\"]},{\"name\":\"EMAIL\",\"type\":[\"string\",\"null\"]},{\"name\":\"PHONE_NUM\",\"type\":[\"string\",\"null\"]}]}",
+"input.path":"gs://<bucket_name>/employees.csv",
+"bq.dataset":"sampledataset",
+"bq.table":"table_macros_test_new"}

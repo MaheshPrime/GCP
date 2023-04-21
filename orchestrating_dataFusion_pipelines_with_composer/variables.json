@@ -1,0 +1,8 @@
+{
+    "bucket_name": "<bucket_name>",
+    "file_name": "Arguments.json",
+    "instance_name": "<datafusion instance>",
+    "location": "us-west1",
+    "pipeline_name": "CDF_Data_Pipeline",
+    "project_id": "<Project Id>"
+}
