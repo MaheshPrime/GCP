@@ -29,8 +29,8 @@ To run this project, you will need to add the following Airflow variables to adm
     
     "bucket_name": "< GCS Bucket Name>",
     "file_name": "<Argument File Name>",
-    "instance_name": "<Datafusion Instance Name>",
-    "location": "<location>",
+    "instance_name": "<Datafusion Instance Name>", # instance name in lowercase i.e: cdf-test-1
+    "location": "<location>",  			   # location is instance region i.e: us-central1
     "pipeline_name": "<Data Pipeline Name>",
     "project_id": "<Project Id>"
 
